@@ -29,6 +29,10 @@ body {
   height: 100vh;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 li, ol, ul {
   padding: 0;
   display: inline-block;
