@@ -31,6 +31,7 @@ body {
 
 a:hover {
   cursor: pointer;
+  background-color: yellow;
 }
 
 li, ol, ul {
@@ -152,6 +153,8 @@ button {
 
 .win {
   background-color: var(--color-win);
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
 }
 
 .win a {
@@ -160,6 +163,8 @@ button {
 
 .lose {
   background-color: var(--color-lose);
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
 }
 
 .lose a {
