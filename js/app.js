@@ -31,7 +31,7 @@
         
         const phrase = document.querySelector('ul');
         
-        for ( i = 0; i < arr.length; i += 1) {
+        for (let i = 0; i < arr.length; i += 1) {
             let list = document.createElement('li');
             list.textContent = arr[i];
             // console.log(list);
@@ -52,7 +52,7 @@
         const checkLetter = document.querySelectorAll('li');
         let match = null;
       
-        for ( i = 0; i < checkLetter.length; i += 1) {
+        for (let i = 0; i < checkLetter.length; i += 1) {
             // Compares the text of the button parameter to the text of the li at the current index of the loop
             if (button.textContent === checkLetter[i].textContent.toLowerCase() ) {
                 checkLetter[i].classList.add('show');
@@ -68,21 +68,26 @@
     const checkWin = () => {
         const letter = document.querySelectorAll('.letter');
         const show = document.querySelectorAll('.show');
+
         if (letter.length === show.length) {
             overlay.className = 'win';
             title.textContent = `CONGRATUATIONS, YOU WON! THE random phrase is ${phraseArray.join('')}`;
             overlay.style.display = 'flex';
             startButton.textContent = 'Play Again!';
-            //setPlayAgain();
+            startButton.addEventListener('click', (e) => { 
+                setPlayAgain();
+            });
         }
         if (missedGuesses > 4) {
             overlay.className = 'lose';
             title.textContent = `You lost! THE CORRECT PHRASE IS ${phraseArray.join('')} Please try again!'`;
             overlay.style.display = 'flex';
-            startButton.textContent = 'Play Again!';
-            //setPlayAgain();
+            startButton.textContent = 'Try Again!';
+            startButton.addEventListener('click', () => { 
+                setPlayAgain();
+            });
         }
-    }
+    };
  
     // listen for the start game button to be pressed
     startButton.addEventListener('click', () => {
@@ -110,17 +115,24 @@
         checkWin();
     });
 
-    // function setPlayAgain() {
+    function setPlayAgain() {
         
-    //     //resetList.document.querySelectorALL('#phrase ul li')
-    //     res.document.querySelectorAll('ul');
-    //     resli.document.querySelectorAll('li');
-    //     resetLetters.document.querySelectorALL('#qwerty .keyrow button');
-    //     startButton.disabled = false;
-    //     for (i = 0; i < resli.length; i+= 0) {
-    //     missedGuesses = 0;
-    //     res.remove(resli);
-    //     //resetLetters();
-    // }
-    //     startButton.addEventListener('click', startButton);
-    // }
+        const resetPhrase = document.querySelectorAll('#phrase ul li');
+        const resetLetters = document.querySelectorAll('#qwerty .keyrow button');
+        const life = document.querySelectorAll('.tries img');
+
+        for(let i = 0; i < resetPhrase.length; i+=1) {
+            resetPhrase[i].remove(resetPhrase[i]);
+        }
+        for (let i = 0; i < resetLetters.length; i+=1) {
+            resetLetters[i].className = "";
+            resetLetters[i].disabled = false;
+        }
+        
+        for (let i = 0; i < life.length; i+=1) {
+        life[i].src = 'images/liveHeart.png';
+        }
+        missedGuesses = 0;
+        addPhraseToDisplay(phraseArray);
+    }
+    
