@@ -1,5 +1,5 @@
     const qwerty = document.getElementById('qwerty');
-    //const phrase = document.getElementById('phrase');
+    const phrase = document.getElementById('phrase');
     const overlay = document.getElementById('overlay');
     const startButton = document.querySelector('.btn__reset');
     const title = document.querySelector('.title');
@@ -29,7 +29,7 @@
     // adds the letters of string to the display
     function addPhraseToDisplay (arr) {
         
-        const phrase = document.querySelector('ul');
+        const phrase = document.querySelector('#phrase ul');
         
         for (let i = 0; i < arr.length; i += 1) {
             let list = document.createElement('li');
@@ -92,6 +92,7 @@
     // listen for the start game button to be pressed
     startButton.addEventListener('click', () => {
         overlay.style.display = 'none';
+        getRandomPhraseAsArray(phrases);
     });
 
     // listen for the onscreen keyboard to be clicked
@@ -120,6 +121,7 @@
         const resetPhrase = document.querySelectorAll('#phrase ul li');
         const resetLetters = document.querySelectorAll('#qwerty .keyrow button');
         const life = document.querySelectorAll('.tries img');
+        //const resetRandomPhrase = document.getElementById('phrases');
 
         for(let i = 0; i < resetPhrase.length; i+=1) {
             resetPhrase[i].remove(resetPhrase[i]);
@@ -128,11 +130,16 @@
             resetLetters[i].className = "";
             resetLetters[i].disabled = false;
         }
+        // for (let i = 0; i < resetRandomPhrase.length; i+=1) {
+        //     resetRandomPhrase[i].length = 0;
+        //     console.log(resetRandomPhrase);
+        // }
         
         for (let i = 0; i < life.length; i+=1) {
         life[i].src = 'images/liveHeart.png';
         }
         missedGuesses = 0;
+        getRandomPhraseAsArray(phrases);
         addPhraseToDisplay(phraseArray);
     }
     
