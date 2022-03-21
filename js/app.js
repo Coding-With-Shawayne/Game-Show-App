@@ -12,6 +12,13 @@
         'MORNING COFFEE IS THE BEST',
         'ONCE UPON A TIME IN MEXICO'
     ];
+    let phrasesTwo = [
+        'AGE IS A NUMBER',
+        'WEB DEVELOPERS',
+        'ETHICAL HACKING',
+        'PERFECT DATE',
+        'MORNING WALKS'
+    ];
 
     // return a random phrase from an array
     function getRandomPhraseAsArray (arr) {
@@ -71,7 +78,8 @@
 
         if (letter.length === show.length) {
             overlay.className = 'win';
-            title.textContent = `CONGRATUATIONS, YOU WON! THE random phrase is ${phraseArray.join('')}`;
+            title.textContent = `CONGRATUATIONS, YOU WON!`;
+            //title.textContent = `CONGRATUATIONS, YOU WON! THE random phrase is ${phraseArray.join('')}`;
             overlay.style.display = 'flex';
             startButton.textContent = 'Play Again!';
             startButton.addEventListener('click', (e) => { 
@@ -80,7 +88,7 @@
         }
         if (missedGuesses > 4) {
             overlay.className = 'lose';
-            title.textContent = `You lost! THE CORRECT PHRASE IS ${phraseArray.join('')} Please try again!'`;
+            title.textContent = `You lost! Please try again!'`;
             overlay.style.display = 'flex';
             startButton.textContent = 'Try Again!';
             startButton.addEventListener('click', () => { 
@@ -121,7 +129,7 @@
         const resetPhrase = document.querySelectorAll('#phrase ul li');
         const resetLetters = document.querySelectorAll('#qwerty .keyrow button');
         const life = document.querySelectorAll('.tries img');
-        //const resetRandomPhrase = document.getElementById('phrases');
+        const newPhrase = document.getElementById('phrase');;
 
         for(let i = 0; i < resetPhrase.length; i+=1) {
             resetPhrase[i].remove(resetPhrase[i]);
@@ -130,16 +138,16 @@
             resetLetters[i].className = "";
             resetLetters[i].disabled = false;
         }
-        // for (let i = 0; i < resetRandomPhrase.length; i+=1) {
-        //     resetRandomPhrase[i].length = 0;
-        //     console.log(resetRandomPhrase);
-        // }
+        for (let i = 0; i < phrase.length; i+=1) {
+            resetPhrase[i].removeChild(resetPhrase[i].firstElementChild);
+        }
         
         for (let i = 0; i < life.length; i+=1) {
         life[i].src = 'images/liveHeart.png';
         }
         missedGuesses = 0;
-        getRandomPhraseAsArray(phrases);
-        addPhraseToDisplay(phraseArray);
+       
+        const phraseArr = getRandomPhraseAsArray(phrases);
+        addPhraseToDisplay(phraseArr);
     }
     
